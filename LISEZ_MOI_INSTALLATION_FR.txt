@@ -1,0 +1,69 @@
+TEEGUL_MAX — PWA ANDROID
+========================
+
+CONTENU
+- index.html            tableau de bord existant Teegul_MAX (v32)
+- manifest.webmanifest  paramètres d'installation PWA
+- sw.js                 cache hors ligne de l'interface
+- icon-192.png          icône Android
+- icon-512.png          icône Android haute résolution
+
+IMPORTANT : POURQUOI UN HÉBERGEMENT HTTPS ?
+Chrome Android exige un contexte sécurisé pour l'installation PWA et les fonctions
+modernes de géolocalisation / accès réseau local. Le paquet doit donc être publié
+une première fois sur une adresse HTTPS (GitHub Pages, Netlify ou votre hébergeur).
+Après la première visite, l'interface est mise en cache et peut s'ouvrir hors ligne.
+Le télescope reste joignable sur son réseau Wi-Fi local.
+
+INSTALLATION SIMPLE AVEC GITHUB PAGES (GRATUIT)
+1. Sur un ordinateur, connectez-vous à https://github.com/ et créez un compte si besoin.
+2. Créez un nouveau dépôt public nommé exactement : teegul-max-pwa
+3. Dans le dépôt, choisissez Add file > Upload files.
+4. Déposez les 5 fichiers de ce dossier (pas le dossier parent), puis cliquez Commit changes.
+5. Ouvrez Settings > Pages.
+6. Dans Build and deployment, choisissez Deploy from a branch.
+7. Sélectionnez la branche main et le dossier /(root), puis Save.
+8. Attendez la publication. GitHub affichera une adresse du type :
+   https://VOTRE-NOM.github.io/teegul-max-pwa/
+9. Sur le téléphone Android, ouvrez cette adresse dans Chrome, attendez le chargement
+   complet, puis menu ⋮ > Installer l'application (ou Ajouter à l'écran d'accueil).
+10. Lancez Teegul_MAX depuis sa nouvelle icône. La première ouverture doit se faire
+    avec Internet pour charger et mettre en cache l'application.
+
+UTILISATION SUR LE TERRAIN
+1. Allumez le Teegul_MAX.
+2. Connectez le téléphone au Wi-Fi du télescope (AP Teegul_MAX) ou au même hotspot
+   que le télescope.
+3. Lancez l'application installée.
+4. Dans Telescope address, laissez 192.168.4.1 si le télescope est en point d'accès.
+   Si le télescope est connecté à un hotspot, saisissez son adresse IP affichée sur
+   l'écran LCD (exemple : 10.137.13.164).
+5. Appuyez sur Connect / refresh. C'est cette action explicite qui déclenche la
+   première requête vers le réseau local ; acceptez l'autorisation Chrome si elle
+   apparaît. Si Chrome propose un réglage réseau local, autorisez-le pour le site.
+6. Pour envoyer les coordonnées du téléphone, appuyez sur Send my Position et
+   autorisez la localisation.
+
+UTILISATION HORS LIGNE
+Une fois installée et ouverte au moins une fois en ligne, l'interface est conservée
+par le service worker. Sur le terrain, Internet n'est pas nécessaire pour ouvrir
+l'application. Le Wi-Fi local du télescope doit évidemment rester connecté.
+
+DÉPANNAGE
+- Si la page ne s'installe pas : vérifier que l'adresse commence par https:// et
+  que tous les fichiers ont été déposés à la racine du dépôt.
+- Si la page s'ouvre mais ne contacte pas le télescope : vérifier l'adresse IP,
+  le Wi-Fi actif, puis réappuyer sur Connect / refresh.
+- Si aucune autorisation réseau local n'est proposée : vérifier les autorisations
+  du site dans Chrome Android (Paramètres > Paramètres des sites), puis recharger
+  l'application et appuyer sur Connect. Les libellés varient selon la version Chrome.
+- Ne pas ouvrir index.html via file:// pour ce test : utiliser l'adresse HTTPS puis
+  l'application installée.
+- Le service worker met en cache l'interface uniquement. Les appels /api/status et
+  /api/site vers le télescope ne sont jamais mis en cache ni interceptés.
+
+NOTE TECHNIQUE
+Cette PWA reprend le tableau de bord HTML v32 fourni dans le projet. Elle ajoute le
+manifest, les icônes et le cache hors ligne ; elle ne modifie pas le firmware Arduino.
+Le fonctionnement final des autorisations Local Network Access doit être validé
+sur le téléphone et sa version exacte de Chrome.

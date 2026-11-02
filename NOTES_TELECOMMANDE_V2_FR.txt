@@ -12,3 +12,12 @@ commandes. Le serveur accepte les commandes sur /api/input et /api/release.
 Une commande est rafraichie toutes les 180 ms. Le firmware la relache si aucun
 rafraichissement n'arrive pendant 650 ms. Le relachement du doigt, la perte de
 focus et le passage de l'application en arriere-plan envoient egalement un stop.
+
+MISE A JOUR PWA v3
+- Gauche/droite réalignés sur le joystick physique.
+- Chaque direction propose trois boutons de vitesse (15 %, 40 %, 100 %).
+- Maintenir le bouton pour conserver la commande et laisser agir la rampe firmware.
+- Relâcher pour envoyer immédiatement la commande de relâchement.
+- Rafraîchissement LCD/tableau de bord toutes les ~300 ms (au lieu de 1500 ms).
+- Les glyphes LCD spéciaux sont affichés en Unicode dans le miroir.
+- Cache hors ligne renommé v3 : recharger la page publiée une fois en ligne pour installer la mise à jour.

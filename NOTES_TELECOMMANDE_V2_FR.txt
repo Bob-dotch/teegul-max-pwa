@@ -1,0 +1,14 @@
+TEEGUL_MAX PWA - TELECOMMANDE V2
+
+Publier le contenu de cette archive a la place de la version precedente sur
+GitHub Pages (ou remplacer les fichiers du depot). Le cache Service Worker a
+ete incrementee en v2 pour forcer le renouvellement de l'interface.
+
+La PWA affiche maintenant le LCD 4 x 20 et propose les commandes directionnelles,
+le bouton central et deux boutons de controle. Connecter le telephone au meme
+reseau que le Teegul_MAX, puis toucher Connect / refresh avant d'utiliser les
+commandes. Le serveur accepte les commandes sur /api/input et /api/release.
+
+Une commande est rafraichie toutes les 180 ms. Le firmware la relache si aucun
+rafraichissement n'arrive pendant 650 ms. Le relachement du doigt, la perte de
+focus et le passage de l'application en arriere-plan envoient egalement un stop.

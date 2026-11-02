@@ -18,7 +18,7 @@ label{display:block;color:var(--muted);font-size:.8rem;margin-bottom:6px}input{w
 button{border:0;border-radius:10px;padding:13px 16px;font-weight:700;font-size:1rem;background:var(--accent);color:#092018;width:100%;margin-top:10px}
 button.secondary{background:#344966;color:var(--text)}button:disabled{opacity:.5}
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.metric{background:#111e30;border:1px solid var(--line);border-radius:10px;padding:11px;min-width:0}.metric .k{color:var(--muted);font-size:.78rem}.metric .v{font-size:1.08rem;font-weight:650;overflow-wrap:anywhere;margin-top:3px}
-.status{font-size:.88rem;color:var(--muted);line-height:1.45;white-space:pre-wrap}.good{color:var(--accent)}.bad{color:#ff9b9b}.small{font-size:.78rem;color:var(--muted)}
+.lcd{background:#06140b;color:#8dff9d;border:2px solid #45634d;border-radius:10px;padding:12px;font:600 14px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace;white-space:pre;overflow:hidden;letter-spacing:.02em}.remoteGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-width:330px;margin:12px auto}.remoteKey{min-height:64px;margin:0;padding:8px;background:#344966;color:var(--text);touch-action:none;user-select:none;-webkit-user-select:none;font-size:1.25rem}.remoteKey:active,.remoteKey.pressed{background:var(--accent);color:#092018}.remoteKey.center{border-radius:50%;min-height:64px}.remoteActions{display:grid;grid-template-columns:1fr 1fr;gap:10px}.remoteActions button{touch-action:none;min-height:56px}.status{font-size:.88rem;color:var(--muted);line-height:1.45;white-space:pre-wrap}.good{color:var(--accent)}.bad{color:#ff9b9b}.small{font-size:.78rem;color:var(--muted)}
 @media(min-width:560px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 </style>
 </head>
@@ -46,6 +46,28 @@ button.secondary{background:#344966;color:var(--text)}button:disabled{opacity:.5
 <p class="small" id="updated">Not updated yet</p>
 </section>
 <section class="panel">
+<h2 style="font-size:1.05rem;margin:0 0 8px">LCD du télescope</h2>
+<div class="lcd" id="lcd">                    
+                    
+                    
+                    </div>
+<p class="small">Copie en direct de l'écran physique (20 × 4).</p>
+</section>
+<section class="panel">
+<h2 style="font-size:1.05rem;margin:0 0 5px">Télécommande</h2>
+<p class="status">Maintenir une flèche pour déplacer les moteurs. Le bouton central reproduit un appui sur JOY_CENTER.</p>
+<div class="remoteGrid">
+ <div></div><button class="remoteKey" data-dir="up">▲</button><div></div>
+ <button class="remoteKey" data-dir="left">◀</button><button class="remoteKey center" data-key="center">●</button><button class="remoteKey" data-dir="right">▶</button>
+ <div></div><button class="remoteKey" data-dir="down">▼</button><div></div>
+</div>
+<div class="remoteActions">
+ <button class="secondary" data-key="hand1">Contrôle 1</button>
+ <button class="secondary" data-key="hand2">Contrôle 2</button>
+</div>
+<div class="status" id="remoteStatus">Commandes relâchées.</div>
+</section>
+<section class="panel">
 <h2 style="font-size:1.05rem;margin:0 0 5px">Phone GPS</h2>
 <p class="status">Connect the phone to the Teegul_MAX Wi-Fi (or the same hotspot as the telescope), then allow Chrome to access location when prompted.</p>
 <button id="gps">Send my Position</button>
@@ -62,6 +84,7 @@ function decText(deg){let v=Number(deg);return `${v<0?'−':'+'}${Math.abs(v).to
 async function refresh(){
  try{
   const r=await fetch(base()+'/api/status',{cache:'no-store'});if(!r.ok)throw new Error('HTTP '+r.status);const d=await r.json();
+  if(d.screen){const lines=[];for(let i=0;i<4;i++)lines.push(d.screen.slice(i*20,(i+1)*20));$('lcd').textContent=lines.join('\n');}
   $('ra').textContent=raText(d.ra_deg);$('dec').textContent=decText(d.dec_deg);$('alt').textContent=fmt(d.alt_deg,3)+'°';$('az').textContent=fmt(d.az_deg,3)+'°';
   $('azTicks').textContent=d.az_ticks;$('altTicks').textContent=d.alt_ticks;$('azSpeed').textContent=fmt(d.speed_az,2);$('altSpeed').textContent=fmt(d.speed_alt,2);
   $('siteLat').textContent=fmt(d.latitude,6)+'°';$('siteLon').textContent=fmt(d.longitude,6)+'°';
@@ -94,6 +117,14 @@ $('gps').addEventListener('click',()=>{
   $('gpsStatus').textContent=(messages[err.code]||err.message)+'. Check Android location is enabled and Chrome has location permission.';$('gps').disabled=false;
  },{enableHighAccuracy:true,timeout:25000,maximumAge:0});
 });
+// Commandes distantes : valeurs ADC identiques aux directions du joystick physique.
+const remote={x:512,y:512,c:0,h1:0,h2:0};let remoteTimer=null;
+function sendRemote(){const params=new URLSearchParams(remote);fetch(base()+'/api/input',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'},body:params.toString()}).then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);$('remoteStatus').textContent='Télécommande active.';}).catch(e=>{$('remoteStatus').textContent='Commande non transmise : '+e.message;releaseRemote();});}
+function startRemote(){if(!remoteTimer){sendRemote();remoteTimer=setInterval(sendRemote,180);}}
+function releaseRemote(){if(remoteTimer){clearInterval(remoteTimer);remoteTimer=null;}remote.x=remote.y=512;remote.c=remote.h1=remote.h2=0;document.querySelectorAll('.remoteKey,.remoteActions button').forEach(b=>b.classList.remove('pressed'));fetch(base()+'/api/release',{method:'POST'}).catch(()=>{});$('remoteStatus').textContent='Commandes relâchées.';}
+function pressRemote(button){button.classList.add('pressed');const d=button.dataset.dir,k=button.dataset.key;if(d==='left')remote.x=5;if(d==='right')remote.x=1022;if(d==='up')remote.y=1022;if(d==='down')remote.y=6;if(k==='center')remote.c=1;if(k==='hand1')remote.h1=1;if(k==='hand2')remote.h2=1;startRemote();}
+document.querySelectorAll('[data-dir],[data-key]').forEach(button=>{button.addEventListener('pointerdown',e=>{e.preventDefault();try{button.setPointerCapture(e.pointerId);}catch(_){}pressRemote(button);});button.addEventListener('pointerup',e=>{e.preventDefault();releaseRemote();});button.addEventListener('pointercancel',releaseRemote);button.addEventListener('lostpointercapture',releaseRemote);});
+window.addEventListener('blur',releaseRemote);document.addEventListener('visibilitychange',()=>{if(document.hidden)releaseRemote();});
 $('connection').textContent='Tap Connect / refresh to contact the telescope and allow local-network access if Chrome asks.';
 if ('serviceWorker' in navigator) { window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(err => console.warn('PWA offline cache unavailable:', err))); }
 </script>

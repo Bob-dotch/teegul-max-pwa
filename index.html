@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -18,7 +18,7 @@ label{display:block;color:var(--muted);font-size:.8rem;margin-bottom:6px}input{w
 button{border:0;border-radius:10px;padding:13px 16px;font-weight:700;font-size:1rem;background:var(--accent);color:#092018;width:100%;margin-top:10px}
 button.secondary{background:#344966;color:var(--text)}button:disabled{opacity:.5}
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.metric{background:#111e30;border:1px solid var(--line);border-radius:10px;padding:11px;min-width:0}.metric .k{color:var(--muted);font-size:.78rem}.metric .v{font-size:1.08rem;font-weight:650;overflow-wrap:anywhere;margin-top:3px}
-.lcd{background:#06140b;color:#8dff9d;border:2px solid #45634d;border-radius:10px;padding:12px;font:600 14px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace;white-space:pre;overflow:hidden;letter-spacing:.02em}.remoteGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;max-width:390px;margin:12px auto;align-items:center}.dirGroup{display:flex;width:100%;justify-content:center;gap:3px}.remoteKey{min-width:0;min-height:50px;margin:0;padding:3px 1px;background:#344966;color:var(--text);touch-action:none;user-select:none;-webkit-user-select:none;font-size:.68rem;letter-spacing:-.05em;flex:1;white-space:nowrap;overflow:hidden}.remoteKey:active,.remoteKey.pressed{background:var(--accent);color:#092018}.remoteKey.center{grid-column:2;grid-row:2;justify-self:center;align-self:center;border-radius:50%;width:54px;height:54px;min-height:54px;padding:0;font-size:1.35rem;flex:none}.dirGroup.up{grid-column:2;grid-row:1}.dirGroup.left{grid-column:1;grid-row:2}.dirGroup.right{grid-column:3;grid-row:2}.dirGroup.down{grid-column:2;grid-row:3}.remoteControl{touch-action:none;min-height:38px!important;margin:0!important;padding:7px 4px!important;font-size:.78rem!important;width:100%;align-self:center;white-space:nowrap}.remoteGrid>[data-key="hand1"]{grid-column:1;grid-row:3}.remoteGrid>[data-key="hand2"]{grid-column:3;grid-row:3}.status{font-size:.88rem;color:var(--muted);line-height:1.45;white-space:pre-wrap}.good{color:var(--accent)}.bad{color:#ff9b9b}.small{font-size:.78rem;color:var(--muted)}
+.lcd{background:#06140b;color:#8dff9d;border:2px solid #45634d;border-radius:10px;padding:12px;font:600 14px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace;white-space:pre;overflow:hidden;letter-spacing:.02em}.remoteGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;max-width:390px;margin:12px auto;align-items:center}.dirGroup{display:flex;width:100%;justify-content:center;gap:3px}.remoteKey{min-width:0;min-height:50px;margin:0;padding:3px 1px;background:#344966;color:var(--text);touch-action:none;user-select:none;-webkit-user-select:none;font-size:1.35rem;flex:1;white-space:nowrap;overflow:hidden}.remoteKey:active,.remoteKey.pressed{background:var(--accent);color:#092018}.remoteKey.center{grid-column:2;grid-row:2;justify-self:center;align-self:center;border-radius:50%;width:54px;height:54px;min-height:54px;padding:0;font-size:1.35rem;flex:none}.dirGroup.up{grid-column:2;grid-row:1}.dirGroup.left{grid-column:1;grid-row:2}.dirGroup.right{grid-column:3;grid-row:2}.dirGroup.down{grid-column:2;grid-row:3}.remoteControl{touch-action:none;min-height:36px!important;margin:0!important;padding:6px 4px!important;font-size:.78rem!important;width:100%;align-self:center;white-space:nowrap}.remoteGrid>[data-key="hand1"]{grid-column:1;grid-row:3}.remoteGrid>[data-key="hand2"]{grid-column:3;grid-row:3}.speedModes{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-top:12px}.speedMode{margin:0;padding:10px 3px;min-height:42px;width:100%;font-size:.78rem;background:#344966;color:var(--text);border:1px solid var(--line)}.speedMode[aria-checked="true"]{background:var(--accent);color:#092018;border-color:var(--accent)}.status{font-size:.88rem;color:var(--muted);line-height:1.45;white-space:pre-wrap}.good{color:var(--accent)}.bad{color:#ff9b9b}.small{font-size:.78rem;color:var(--muted)}
 @media(min-width:560px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 </style>
 </head>
@@ -57,21 +57,20 @@ button.secondary{background:#344966;color:var(--text)}button:disabled{opacity:.5
 <h2 style="font-size:1.05rem;margin:0 0 5px">Télécommande</h2>
 <p class="status">Maintenir une flèche pour déplacer les moteurs. Le bouton central reproduit un appui sur JOY_CENTER.</p>
 <div class="remoteGrid">
- <div class="dirGroup up">
-  <button class="remoteKey" data-dir="up" data-speed="1" aria-label="Nord vitesse 1">↑</button><button class="remoteKey" data-dir="up" data-speed="2" aria-label="Nord vitesse 2">↑↑</button><button class="remoteKey" data-dir="up" data-speed="3" aria-label="Nord vitesse 3">↑↑↑</button>
- </div>
- <div class="dirGroup left">
-  <button class="remoteKey" data-dir="left" data-speed="3" aria-label="Ouest vitesse 3">←←←</button><button class="remoteKey" data-dir="left" data-speed="2" aria-label="Ouest vitesse 2">←←</button><button class="remoteKey" data-dir="left" data-speed="1" aria-label="Ouest vitesse 1">←</button>
- </div>
- <button class="remoteKey center" data-key="center">●</button>
- <div class="dirGroup right">
-  <button class="remoteKey" data-dir="right" data-speed="1" aria-label="Est vitesse 1">→</button><button class="remoteKey" data-dir="right" data-speed="2" aria-label="Est vitesse 2">→→</button><button class="remoteKey" data-dir="right" data-speed="3" aria-label="Est vitesse 3">→→→</button>
- </div>
+ <div class="dirGroup up"><button class="remoteKey" data-dir="up" aria-label="Nord">↑</button></div>
+ <div class="dirGroup left"><button class="remoteKey" data-dir="left" aria-label="Ouest">←</button></div>
+ <button class="remoteKey center" data-key="center" aria-label="Bouton central">●</button>
+ <div class="dirGroup right"><button class="remoteKey" data-dir="right" aria-label="Est">→</button></div>
  <button class="secondary remoteControl" data-key="hand1">Contrôle 1</button>
- <div class="dirGroup down">
-  <button class="remoteKey" data-dir="down" data-speed="1" aria-label="Sud vitesse 1">↓</button><button class="remoteKey" data-dir="down" data-speed="2" aria-label="Sud vitesse 2">↓↓</button><button class="remoteKey" data-dir="down" data-speed="3" aria-label="Sud vitesse 3">↓↓↓</button>
- </div>
+ <div class="dirGroup down"><button class="remoteKey" data-dir="down" aria-label="Sud">↓</button></div>
  <button class="secondary remoteControl" data-key="hand2">Contrôle 2</button>
+</div>
+<div class="small" style="text-align:center;margin-top:8px">Mode de vitesse</div>
+<div class="speedModes" role="radiogroup" aria-label="Vitesse de déplacement">
+ <button class="speedMode" type="button" role="radio" aria-checked="false" data-mode="1">Guide</button>
+ <button class="speedMode" type="button" role="radio" aria-checked="false" data-mode="2">Center</button>
+ <button class="speedMode" type="button" role="radio" aria-checked="true" data-mode="3">Find</button>
+ <button class="speedMode" type="button" role="radio" aria-checked="false" data-mode="0">Slew</button>
 </div>
 <div class="status" id="remoteStatus">Commandes relâchées.</div>
 </section>
@@ -125,16 +124,27 @@ $('gps').addEventListener('click',()=>{
   $('gpsStatus').textContent=(messages[err.code]||err.message)+'. Check Android location is enabled and Chrome has location permission.';$('gps').disabled=false;
  },{enableHighAccuracy:true,timeout:25000,maximumAge:0});
 });
-// Commandes distantes : trois vitesses issues de la courbe du joystick.
-// Les niveaux correspondent a 15 %, 40 % et 100 % de MAX_SPEED ; la rampe
-// d'acceleration existante du firmware s'applique pendant l'appui maintenu.
-const remote={x:512,y:512,c:0,h1:0,h2:0};let remoteTimer=null,remoteSpeedLabel='';
-const speedFractions=[1/3,2/3,1.0];
-function rawForDirection(direction,level){
- const normalized=Math.pow(speedFractions[level-1],0.25);
- const offset=Math.round(45+normalized*467); // DEAD_ZONE=45, centre=512
+// Commandes PWA : mode numerique LX200 (Guide/Center/Find) ou Slew avec rampe.
+// 0=Slew, 1=Guide, 2=Center, 3=Find. Find est le mode initial du firmware.
+const remote={x:512,y:512,c:0,h1:0,h2:0,m:3};
+let remoteTimer=null,remoteSpeedLabel='Find';
+const modeLabels={0:'Slew',1:'Guide',2:'Center',3:'Find'};
+function selectRemoteMode(mode){
+ remote.m=Number(mode);remoteSpeedLabel=modeLabels[remote.m]||'Find';
+ document.querySelectorAll('[data-mode]').forEach(b=>b.setAttribute('aria-checked',String(Number(b.dataset.mode)===remote.m)));
+ $('remoteStatus').textContent='Mode '+remoteSpeedLabel+' sélectionné.';
+}
+document.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click',()=>selectRemoteMode(b.dataset.mode)));
+function rawForDirection(direction){
  const positive=(direction==='left'||direction==='up');
- return positive?Math.min(1023,512+offset):Math.max(0,512-offset);
+ // Slew reprend la consigne intermediaire historique : 2/3 de MAX_SPEED,
+ // avec la rampe de 6 s. Les modes fixes sont identifies par le champ m.
+ if(remote.m===0){
+  const normalized=Math.pow(2/3,0.25);
+  const offset=Math.round(45+normalized*467);
+  return positive?Math.min(1023,512+offset):Math.max(0,512-offset);
+ }
+ return positive?1023:0;
 }
 async function sendRemote(){
  if(remoteTimer===null)return;
@@ -142,22 +152,22 @@ async function sendRemote(){
   const params=new URLSearchParams(remote);
   const r=await fetch(base()+'/api/input',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'},body:params.toString()});
   if(!r.ok)throw new Error('HTTP '+r.status);
-  $('remoteStatus').textContent='Télécommande active · vitesse '+(remoteSpeedLabel||'');
+  $('remoteStatus').textContent='Télécommande active · mode '+remoteSpeedLabel;
  }catch(e){$('remoteStatus').textContent='Commande non transmise : '+e.message;releaseRemote();return;}
  if(remoteTimer!==null)remoteTimer=setTimeout(sendRemote,140);
 }
 function startRemote(){if(remoteTimer===null){remoteTimer=-1;sendRemote();}}
 function releaseRemote(){
  if(remoteTimer!==null && remoteTimer!==-1)clearTimeout(remoteTimer);
- remoteTimer=null;remote.x=remote.y=512;remote.c=remote.h1=remote.h2=0;remoteSpeedLabel='';
+ remoteTimer=null;remote.x=remote.y=512;remote.c=remote.h1=remote.h2=0;
  document.querySelectorAll('.remoteKey,.remoteActions button').forEach(b=>b.classList.remove('pressed'));
  fetch(base()+'/api/release',{method:'POST'}).catch(()=>{});
- $('remoteStatus').textContent='Commandes relâchées.';
+ $('remoteStatus').textContent='Commandes relâchées · mode '+remoteSpeedLabel+'.';
 }
 function pressRemote(button){
  button.classList.add('pressed');
  const d=button.dataset.dir,k=button.dataset.key;
- if(d){const raw=rawForDirection(d,Number(button.dataset.speed)||3);if(d==='left'||d==='right')remote.x=raw;else remote.y=raw;remoteSpeedLabel=button.dataset.speed||'3';}
+ if(d){const raw=rawForDirection(d);if(d==='left'||d==='right')remote.x=raw;else remote.y=raw;}
  if(k==='center')remote.c=1;if(k==='hand1')remote.h1=1;if(k==='hand2')remote.h2=1;
  startRemote();
 }

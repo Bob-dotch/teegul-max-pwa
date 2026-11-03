@@ -1,0 +1,7 @@
+PWA Teegul_MAX v6 — quatre modes de vitesse
+
+Remplace les 12 boutons directionnels par quatre boutons simples.
+Modes : Guide, Center, Find, Slew. Find est selectionne par defaut.
+Guide/Center/Find correspondent aux constantes de vitesse LX200 du firmware.
+Slew utilise 2/3 de MAX_SPEED et la rampe manuelle existante.
+Le cache Service Worker passe en v6.

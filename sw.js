@@ -1,5 +1,5 @@
 'use strict';
-const CACHE_NAME = 'teegul-max-pwa-v3';
+const CACHE_NAME = 'teegul-max-pwa-v4';
 const APP_SHELL = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(APP_SHELL)).then(() => self.skipWaiting()));

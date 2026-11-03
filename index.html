@@ -18,7 +18,7 @@ label{display:block;color:var(--muted);font-size:.8rem;margin-bottom:6px}input{w
 button{border:0;border-radius:10px;padding:13px 16px;font-weight:700;font-size:1rem;background:var(--accent);color:#092018;width:100%;margin-top:10px}
 button.secondary{background:#344966;color:var(--text)}button:disabled{opacity:.5}
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.metric{background:#111e30;border:1px solid var(--line);border-radius:10px;padding:11px;min-width:0}.metric .k{color:var(--muted);font-size:.78rem}.metric .v{font-size:1.08rem;font-weight:650;overflow-wrap:anywhere;margin-top:3px}
-.lcd{background:#06140b;color:#8dff9d;border:2px solid #45634d;border-radius:10px;padding:12px;font:600 14px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace;white-space:pre;overflow:hidden;letter-spacing:.02em}.remoteGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;max-width:360px;margin:12px auto;align-items:center}.dirGroup{display:flex;justify-content:center;gap:3px}.remoteKey{min-width:0;min-height:52px;margin:0;padding:5px 3px;background:#344966;color:var(--text);touch-action:none;user-select:none;-webkit-user-select:none;font-size:1rem;flex:1}.remoteKey:active,.remoteKey.pressed{background:var(--accent);color:#092018}.remoteKey.center{border-radius:50%;min-height:58px;max-width:62px}.remoteActions{display:grid;grid-template-columns:1fr 1fr;gap:10px}.remoteActions button{touch-action:none;min-height:56px}.status{font-size:.88rem;color:var(--muted);line-height:1.45;white-space:pre-wrap}.good{color:var(--accent)}.bad{color:#ff9b9b}.small{font-size:.78rem;color:var(--muted)}
+.lcd{background:#06140b;color:#8dff9d;border:2px solid #45634d;border-radius:10px;padding:12px;font:600 14px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace;white-space:pre;overflow:hidden;letter-spacing:.02em}.remoteGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;max-width:390px;margin:12px auto;align-items:center}.dirGroup{display:flex;width:100%;justify-content:center;gap:3px}.remoteKey{min-width:0;min-height:50px;margin:0;padding:3px 1px;background:#344966;color:var(--text);touch-action:none;user-select:none;-webkit-user-select:none;font-size:.68rem;letter-spacing:-.05em;flex:1;white-space:nowrap;overflow:hidden}.remoteKey:active,.remoteKey.pressed{background:var(--accent);color:#092018}.remoteKey.center{grid-column:2;grid-row:2;justify-self:center;align-self:center;border-radius:50%;width:54px;height:54px;min-height:54px;padding:0;font-size:1.35rem;flex:none}.dirGroup.up{grid-column:2;grid-row:1}.dirGroup.left{grid-column:1;grid-row:2}.dirGroup.right{grid-column:3;grid-row:2}.dirGroup.down{grid-column:2;grid-row:3}.remoteControl{touch-action:none;min-height:38px!important;margin:0!important;padding:7px 4px!important;font-size:.78rem!important;width:100%;align-self:center;white-space:nowrap}.remoteGrid>[data-key="hand1"]{grid-column:1;grid-row:3}.remoteGrid>[data-key="hand2"]{grid-column:3;grid-row:3}.status{font-size:.88rem;color:var(--muted);line-height:1.45;white-space:pre-wrap}.good{color:var(--accent)}.bad{color:#ff9b9b}.small{font-size:.78rem;color:var(--muted)}
 @media(min-width:560px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 </style>
 </head>
@@ -57,23 +57,21 @@ button.secondary{background:#344966;color:var(--text)}button:disabled{opacity:.5
 <h2 style="font-size:1.05rem;margin:0 0 5px">Télécommande</h2>
 <p class="status">Maintenir une flèche pour déplacer les moteurs. Le bouton central reproduit un appui sur JOY_CENTER.</p>
 <div class="remoteGrid">
- <div></div><div class="dirGroup">
+ <div class="dirGroup up">
   <button class="remoteKey" data-dir="up" data-speed="1" aria-label="Nord vitesse 1">↑</button><button class="remoteKey" data-dir="up" data-speed="2" aria-label="Nord vitesse 2">↑↑</button><button class="remoteKey" data-dir="up" data-speed="3" aria-label="Nord vitesse 3">↑↑↑</button>
- </div><div></div>
- <div class="dirGroup">
-  <button class="remoteKey" data-dir="left" data-speed="1" aria-label="Ouest vitesse 1">←</button><button class="remoteKey" data-dir="left" data-speed="2" aria-label="Ouest vitesse 2">←←</button><button class="remoteKey" data-dir="left" data-speed="3" aria-label="Ouest vitesse 3">←←←</button>
+ </div>
+ <div class="dirGroup left">
+  <button class="remoteKey" data-dir="left" data-speed="3" aria-label="Ouest vitesse 3">←←←</button><button class="remoteKey" data-dir="left" data-speed="2" aria-label="Ouest vitesse 2">←←</button><button class="remoteKey" data-dir="left" data-speed="1" aria-label="Ouest vitesse 1">←</button>
  </div>
  <button class="remoteKey center" data-key="center">●</button>
- <div class="dirGroup">
+ <div class="dirGroup right">
   <button class="remoteKey" data-dir="right" data-speed="1" aria-label="Est vitesse 1">→</button><button class="remoteKey" data-dir="right" data-speed="2" aria-label="Est vitesse 2">→→</button><button class="remoteKey" data-dir="right" data-speed="3" aria-label="Est vitesse 3">→→→</button>
  </div>
- <div></div><div class="dirGroup">
+ <button class="secondary remoteControl" data-key="hand1">Contrôle 1</button>
+ <div class="dirGroup down">
   <button class="remoteKey" data-dir="down" data-speed="1" aria-label="Sud vitesse 1">↓</button><button class="remoteKey" data-dir="down" data-speed="2" aria-label="Sud vitesse 2">↓↓</button><button class="remoteKey" data-dir="down" data-speed="3" aria-label="Sud vitesse 3">↓↓↓</button>
- </div><div></div>
-</div>
-<div class="remoteActions">
- <button class="secondary" data-key="hand1">Contrôle 1</button>
- <button class="secondary" data-key="hand2">Contrôle 2</button>
+ </div>
+ <button class="secondary remoteControl" data-key="hand2">Contrôle 2</button>
 </div>
 <div class="status" id="remoteStatus">Commandes relâchées.</div>
 </section>
@@ -95,14 +93,15 @@ async function refresh(){
  try{
   const r=await fetch(base()+'/api/status',{cache:'no-store'});if(!r.ok)throw new Error('HTTP '+r.status);const d=await r.json();
   if(d.screen){const cells=Array.from(d.screen);const lines=[];for(let i=0;i<4;i++)lines.push(cells.slice(i*20,(i+1)*20).join('').padEnd(20,' '));$('lcd').textContent=lines.join('\n');}
+  statusPollDelay=d.goto_active?900:180;
   $('ra').textContent=raText(d.ra_deg);$('dec').textContent=decText(d.dec_deg);$('alt').textContent=fmt(d.alt_deg,3)+'°';$('az').textContent=fmt(d.az_deg,3)+'°';
   $('azTicks').textContent=d.az_ticks;$('altTicks').textContent=d.alt_ticks;$('azSpeed').textContent=fmt(d.speed_az,2);$('altSpeed').textContent=fmt(d.speed_alt,2);
   $('siteLat').textContent=fmt(d.latitude,6)+'°';$('siteLon').textContent=fmt(d.longitude,6)+'°';
   $('connection').innerHTML=`<span class="good">Connected</span> · ${d.ip}`;$('updated').textContent='Updated '+new Date().toLocaleTimeString();
  }catch(e){$('connection').innerHTML=`<span class="bad">Not connected</span> · ${e.message}<br>On Android, allow Chrome local-network access and keep Wi-Fi connected to Teegul_MAX.`;}
 }
-let pollingActive=false;
-async function pollStatus(){if(!pollingActive)return;await refresh();if(pollingActive)setTimeout(pollStatus,300);}
+let pollingActive=false;let statusPollDelay=180;
+async function pollStatus(){if(!pollingActive)return;await refresh();if(pollingActive)setTimeout(pollStatus,statusPollDelay);}
 $('connect').addEventListener('click',()=>{
  // La premiere requete part d'une action explicite pour Chrome Local Network Access.
  if(!pollingActive){pollingActive=true;pollStatus();}else{refresh();}

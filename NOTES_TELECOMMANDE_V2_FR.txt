@@ -21,3 +21,15 @@ MISE A JOUR PWA v3
 - Rafraîchissement LCD/tableau de bord toutes les ~300 ms (au lieu de 1500 ms).
 - Les glyphes LCD spéciaux sont affichés en Unicode dans le miroir.
 - Cache hors ligne renommé v3 : recharger la page publiée une fois en ligne pour installer la mise à jour.
+
+
+MISE A JOUR PWA v4
+- Les fleches gauche/droite conservent les memes sens qu'en v3.
+- L'ordre des vitesses de la fleche gauche est maintenant 3, 2, 1 (rapide vers lent),
+  symetrique visuellement aux autres directions.
+- Les symboles directionnels sont reduits pour tenir dans les boutons sur petit ecran.
+- Le bouton central est fixe au centre de la grille, sous le bouton Nord du milieu.
+- Controle 1 et Controle 2 sont compacts, a gauche et a droite des boutons Sud.
+- Le rafraichissement LCD passe a environ 180 ms hors GOTO. Pendant un GOTO, il passe
+  automatiquement a environ 900 ms pour reduire les echanges Wi-Fi pendant le mouvement.
+- Nouveau cache hors ligne v4 : recharger la PWA publiee une fois en ligne.

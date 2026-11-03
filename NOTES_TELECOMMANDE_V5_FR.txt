@@ -1,0 +1,3 @@
+PWA Teegul_MAX v5
+
+Niveaux de vitesse manuelle : lent = 1/3 MAX_SPEED, intermediaire = 2/3 MAX_SPEED, rapide = 100 % MAX_SPEED. Le cache du service worker est passe en v5.

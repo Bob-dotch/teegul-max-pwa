@@ -129,7 +129,7 @@ $('gps').addEventListener('click',()=>{
 // Les niveaux correspondent a 15 %, 40 % et 100 % de MAX_SPEED ; la rampe
 // d'acceleration existante du firmware s'applique pendant l'appui maintenu.
 const remote={x:512,y:512,c:0,h1:0,h2:0};let remoteTimer=null,remoteSpeedLabel='';
-const speedFractions=[0.15,0.40,1.0];
+const speedFractions=[1/3,2/3,1.0];
 function rawForDirection(direction,level){
  const normalized=Math.pow(speedFractions[level-1],0.25);
  const offset=Math.round(45+normalized*467); // DEAD_ZONE=45, centre=512
